@@ -31,7 +31,7 @@ class Sample(nn.Module):
 
 
 class Encoder(nn.Module):
-    def __init__(self, in_channels, out_channels, z_dim):
+    def __init__(self, in_channels, out_channels, z_dim, random_seed):
         super(Encoder, self).__init__()
         self.model - nn.Sequential(
             BlockEncoder(in_channels, 32),
@@ -42,7 +42,7 @@ class Encoder(nn.Module):
 
         self.zm = nn.Linear(out_channels, z_dim)
         self.zlv = nn.Linear(out_channels, z_dim)
-        self.sample = Sample(42)
+        self.sample = Sample(random_seed)
 
     def forward(self, x):
         x = self.model(x)
